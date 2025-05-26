@@ -49,9 +49,9 @@ public:
   }
 
   // Pure virtual functions to be provided by the derived optimizer classes.
-  virtual arma::vec computeDistanceMatrix(const arma::mat &A) = 0;
-  virtual double computeCriterion(const arma::vec &d) = 0;
-  virtual arma::vec updateDistanceMatrix(arma::mat &A, int col, int selrow1, int selrow2, arma::vec d) = 0;
+  virtual arma::vec computeDistanceMatrix(const arma::mat A) = 0;
+  virtual double computeCriterion(const arma::vec d) = 0;
+  virtual arma::vec updateDistanceMatrix(arma::mat A, int col, int selrow1, int selrow2, arma::vec d) = 0;
 
   // Strategy 1: deterministic swapping.
   virtual List optimizeDet() {
