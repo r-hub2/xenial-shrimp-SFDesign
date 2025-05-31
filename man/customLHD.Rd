@@ -101,7 +101,7 @@ update.distance.matrix <- function(A, col, selrow1, selrow2, d) {
   row2 <- max(selrow1, selrow2)
 
   compute_position <- function(row, h, n) {
-    n * (h-1) - h*(h-1)/2 + row-h
+    n*(h-1) - h*(h-1)/2 + row-h
   }
 
   # Update for rows less than row1
@@ -148,7 +148,7 @@ update.distance.matrix <- function(A, col, selrow1, selrow2, d) {
   return (d)
 }
 
-n = 10
+n = 6
 p = 2
 # Find an appropriate initial temperature
 crit1 = 1 / (n-1)
