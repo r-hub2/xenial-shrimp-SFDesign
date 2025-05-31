@@ -117,7 +117,7 @@
 #'   return (d)
 #' }
 #'
-#' n = 10
+#' n = 6
 #' p = 2
 #' # Find an appropriate initial temperature
 #' crit1 = 1 / (n-1)

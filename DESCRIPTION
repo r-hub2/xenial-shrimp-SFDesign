@@ -15,6 +15,6 @@ Encoding: UTF-8
 Repository: CRAN
 NeedsCompilation: yes
 RoxygenNote: 7.3.2
-Packaged: 2025-05-26 22:47:42 UTC; s.k.wang
+Packaged: 2025-05-31 18:57:50 UTC; s.k.wang
 Author: Shangkun Wang [aut, cre],
   Roshan Joseph [aut]
