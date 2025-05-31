@@ -78,12 +78,10 @@
 #'     for (h in 1:(row1-1)) {
 #'       position1 <- compute_position(row1, h, n)
 #'       position2 <- compute_position(row2, h, n)
-#'       for (c in col){
-#'         d[position1] <- d[position1] + s * log(abs(A[row1, c] - A[h, c])) -
-#'           s * log(abs(A[row2, c] - A[h, c]))
-#'         d[position2] <- d[position2] + s * log(abs(A[row2, c] - A[h, c])) -
-#'           s * log(abs(A[row1, c] - A[h, c]))
-#'       }
+#'       d[position1] <- d[position1] + s * log(abs(A[row1, col] - A[h, col])) -
+#'           s * log(abs(A[row2, col] - A[h, col]))
+#'       d[position2] <- d[position2] + s * log(abs(A[row2, col] - A[h, col])) -
+#'           s * log(abs(A[row1, col] - A[h, col]))
 #'     }
 #'   }
 #'
@@ -92,12 +90,10 @@
 #'     for (h in (row1+1):(row2-1)) {
 #'       position1 <- compute_position(h, row1, n)
 #'       position2 <- compute_position(row2, h, n)
-#'       for (c in col){
-#'         d[position1] <- d[position1] + s * log(abs(A[row1, c] - A[h, c])) -
-#'           s * log(abs(A[row2, c] - A[h, c]))
-#'         d[position2] <- d[position2] + s * log(abs(A[row2, c] - A[h, c])) -
-#'           s * log(abs(A[row1, c] - A[h, c]))
-#'       }
+#'       d[position1] <- d[position1] + s * log(abs(A[row1, col] - A[h, col])) -
+#'           s * log(abs(A[row2, col] - A[h, col]))
+#'       d[position2] <- d[position2] + s * log(abs(A[row2, col] - A[h, col])) -
+#'           s * log(abs(A[row1, col] - A[h, col]))
 #'     }
 #'   }
 #'
@@ -106,12 +102,10 @@
 #'     for (h in (row2+1):n) {
 #'       position1 <- compute_position(h, row1, n)
 #'       position2 <- compute_position(h, row2, n)
-#'       for (c in col){
-#'         d[position1] <- d[position1] + s * log(abs(A[row1, c] - A[h, c])) -
-#'           s * log(abs(A[row2, c] - A[h, c]))
-#'         d[position2] <- d[position2] + s * log(abs(A[row2, c] - A[h, c])) -
-#'           s * log(abs(A[row1, c] - A[h, c]))
-#'       }
+#'       d[position1] <- d[position1] + s * log(abs(A[row1, col] - A[h, col])) -
+#'           s * log(abs(A[row2, col] - A[h, col]))
+#'       d[position2] <- d[position2] + s * log(abs(A[row2, col] - A[h, col])) -
+#'           s * log(abs(A[row1, col] - A[h, col]))
 #'     }
 #'   }
 #'   return (d)
@@ -144,32 +138,32 @@ customLHD = function(compute.distance.matrix,
 
   if (method == "deterministic"){
     result = customLHDOptimizer_cpp(compute.distance.matrix,
-                                       compute.criterion,
-                                       update.distance.matrix,
-                                       design, num.passes, max.det.iter,
-                                       temp, decay, no.update.iter.max,
-                                       method)
+                                     compute.criterion,
+                                     update.distance.matrix,
+                                     design, num.passes, max.det.iter,
+                                     temp, decay, no.update.iter.max,
+                                     method)
   }else if(method == "sa"){
     result = customLHDOptimizer_cpp(compute.distance.matrix,
-                                       compute.criterion,
-                                       update.distance.matrix,
-                                       design, num.passes, max.sa.iter,
-                                       temp, decay, no.update.iter.max,
-                                       method)
+                                     compute.criterion,
+                                     update.distance.matrix,
+                                     design, num.passes, max.sa.iter,
+                                     temp, decay, no.update.iter.max,
+                                     method)
   }else if (method == "full"){
     result = customLHDOptimizer_cpp(compute.distance.matrix,
-                                       compute.criterion,
-                                       update.distance.matrix,
-                                       design, num.passes, max.sa.iter,
-                                       temp, decay, no.update.iter.max,
-                                       "sa")
+                                     compute.criterion,
+                                     update.distance.matrix,
+                                     design, num.passes, max.sa.iter,
+                                     temp, decay, no.update.iter.max,
+                                     "sa")
     crit_hist = result$crit_hist
     result = customLHDOptimizer_cpp(compute.distance.matrix,
-                                       compute.criterion,
-                                       update.distance.matrix,
-                                       result$design, num.passes, max.det.iter,
-                                       temp, decay, no.update.iter.max,
-                                       "deterministic")
+                                     compute.criterion,
+                                     update.distance.matrix,
+                                     result$design, num.passes, max.det.iter,
+                                     temp, decay, no.update.iter.max,
+                                     "deterministic")
     result$crit_hist = c(crit_hist, result$crit_hist)
   }
   return (result)
