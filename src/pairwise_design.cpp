@@ -470,7 +470,7 @@ public:
       temp, decay, no_update_iter_max, method)
   {
     user_computeDistanceMatrix = [r_computeDistanceMatrix](const arma::mat &A) -> arma::vec {
-      Rcpp::NumericMatrix A_rcpp = Rcpp:wrap(A);
+      Rcpp::NumericMatrix A_rcpp = Rcpp::wrap(A);
       Rcpp::NumericVector result = r_computeDistanceMatrix(A_rcpp);
       return Rcpp::as<arma::vec>(result);
     };
@@ -480,7 +480,7 @@ public:
       return result[0];
     };
     user_updateDistanceMatrix = [r_updateDistanceMatrix](arma::mat &A, int col, int selrow1, int selrow2, arma::vec d) -> arma::vec {
-      Rcpp::NumericMatrix A_rcpp = Rcpp:wrap(A);
+      Rcpp::NumericMatrix A_rcpp = Rcpp::wrap(A);
       Rcpp::NumericVector d_rcpp = Rcpp::wrap(d);
       Rcpp::NumericVector result = r_updateDistanceMatrix(A_rcpp, col, selrow1, selrow2, d_rcpp);
       return Rcpp::as<arma::vec>(result);
